@@ -32,7 +32,7 @@ class LocationController extends Controller
         return $this->service->update($request, $id);
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
         return $this->service->delete($id);
     }
