@@ -21,7 +21,7 @@
 
       <main class="px-3">
         <h1>Tree Mapping</h1>
-        <p class="lead">
+        <p class="lead text-dark">
           Debitis reprehenderit in veritatis. Voluptatibus amet pariatur
           voluptatem commodi. Magni dicta dolore qui est. Omnis ut quis totam
           quasi. Tempora et ducimus blanditiis eos blanditiis occaecati.

@@ -14,4 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::inertia('/', 'Home');
+Route::inertia('/map', 'Map');
+
 Route::inertia('/admin', 'Admin/Dashboard');
