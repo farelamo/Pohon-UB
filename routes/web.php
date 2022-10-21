@@ -13,9 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::inertia('/', 'Home');
-Route::inertia('/map', 'Map');
-Route::inertia('/login', 'Admin/Login');
-Route::inertia('/admin', 'Admin/Dashboard');
-Route::inertia('/admin-pohon', 'Admin/Pohon');
-
+Route::get('/', function () {
+    return view('welcome');
+});
