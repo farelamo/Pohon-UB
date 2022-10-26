@@ -38,6 +38,9 @@
         <li class="sidebar-item">
           <a href="/dev/tree" class='sidebar-link'><i class="bi bi-tree-fill"></i><span>Detail Pohon</span></a>
         </li>
+        <li class="sidebar-item">
+          <a href="/dev/type" class='sidebar-link'><i class="bi bi-ui-radios"></i><span>Tipe Pohon</span></a>
+        </li>
         <li class="sidebar-item  has-sub">
           <a href="#" class='sidebar-link'><i class="bi bi-stack"></i><span>Components</span></a>
           <ul class="submenu ">

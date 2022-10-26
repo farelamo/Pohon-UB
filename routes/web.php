@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminDashboard;
 use App\Http\Controllers\AdminTree;
+use App\Http\Controllers\AdminType;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -22,3 +23,4 @@ Route::get('/', function () {
 
 Route::get('/dev', [AdminDashboard::class, 'index']);
 Route::get('/dev/tree', [AdminTree::class, 'index']);
+Route::get('/dev/type', [AdminType::class, 'index']);
