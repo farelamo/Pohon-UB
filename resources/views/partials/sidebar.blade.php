@@ -3,7 +3,7 @@
     <div class="sidebar-header position-relative">
       <div class="d-flex justify-content-between align-items-center">
         <div class="logo">
-          <span class="text-success fs-5 fw-bold ms-2">Pohon UB</span>
+          <img src="/assets/images/logo/logo.png" alt="" style="height: 50px">
         </div>
         <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
           <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--system-uicons" width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 21 21">
@@ -31,18 +31,18 @@
     </div>
     <div class="sidebar-menu">
       <ul class="menu">
-        <li class="sidebar-title">Menu</li>
+        <li class="sidebar-title text-success">Menu</li>
         <li class="sidebar-item">
-          <a href="/dev" class='sidebar-link'><i class="bi bi-grid-fill"></i><span>Dashboard</span></a>
+          <a href="/dev" class='sidebar-link text-success'><i class="bi bi-grid-fill text-success"></i><span>Dashboard</span></a>
         </li>
         <li class="sidebar-item">
-          <a href="/dev/tree" class='sidebar-link'><i class="bi bi-tree-fill"></i><span>Detail Pohon</span></a>
+          <a href="/dev/tree" class='sidebar-link text-success'><i class="bi bi-tree-fill text-success"></i><span>Detail Pohon</span></a>
         </li>
         <li class="sidebar-item">
-          <a href="/dev/type" class='sidebar-link'><i class="bi bi-ui-radios"></i><span>Tipe Pohon</span></a>
+          <a href="/dev/type" class='sidebar-link text-success'><i class="bi bi-ui-radios text-success"></i><span>Tipe Pohon</span></a>
         </li>
         <li class="sidebar-item  has-sub">
-          <a href="#" class='sidebar-link'><i class="bi bi-stack"></i><span>Components</span></a>
+          <a href="#" class='sidebar-link text-success'><i class="bi bi-stack text-success"></i><span>Components</span></a>
           <ul class="submenu ">
             <li class="submenu-item ">
               <a href="component-alert.html">Alert</a>
