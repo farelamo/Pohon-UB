@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Service\Admin;
+namespace App\Services\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\TreeDetailRequest;
+use Illuminate\Support\Facades\DB;
 use App\Models\TreeDetail;
+use App\Models\Cluster;
 use Exception;
 use Alert;
 
-class TreeDetailController extends Controller
+class TreeDetailService
 {
 
     public function error($kalimat){
@@ -20,8 +21,9 @@ class TreeDetailController extends Controller
     {
         try {
             $tree_details = TreeDetail::all();
-            
-            return view('', compact('tree_details'));
+            $clusters     = Cluster::all();
+
+            return view('admin.tree', compact('tree_details', 'clusters'));
         }catch (Exception $e){
             return $this->error('Terjadi Kesalahan');
         }
@@ -43,7 +45,8 @@ class TreeDetailController extends Controller
         try {
             TreeDetail::create($request->all());
 
-            return $this->index();
+            Alert::success('Mantap', 'Data berhasil ditambah');
+            return redirect()->back();
         }catch (Exception $e){
             return $this->error('Terjadi Kesalahan');
         }
@@ -52,11 +55,15 @@ class TreeDetailController extends Controller
     public function update(TreeDetailRequest $request, $id)
     {
         try {
-            $tree_detail = TreeDetail::where('id', $id)->first();
-            $tree_detail->update($request->all());
-
-            return $this->show($id);
+            DB::beginTransaction();
+                $tree_detail = TreeDetail::where('id', $id)->first();
+                $tree_detail->update($request->all());
+            DB::commit();
+            
+            Alert::success('Mantap', 'Data berhasil diedit');
+            return redirect()->back();
         }catch (Exception $e){
+            DB::rollback();
             return $this->error('Terjadi Kesalahan');
         }
     }
@@ -64,11 +71,15 @@ class TreeDetailController extends Controller
     public function destroy($id)
     {
         try{
-            $tree_detail = TreeDetail::where('id', $id)->first();
-            $tree_detail->delete();
+            DB::beginTransaction();
+                $tree_detail = TreeDetail::where('id', $id)->first();
+                $tree_detail->delete();
+            DB::commit();
 
-            return $this->index();
+            Alert::success('Mantap', 'Data berhasil dihapus');
+            return redirect()->back();
         }catch (Exception $e){
+            DB::rollback();
             return $this->error('Terjadi Kesalahan');
         }
     }

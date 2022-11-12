@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Service\Admin;
+namespace App\Services\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\LocationRequest;
+use Illuminate\Support\Facades\DB;
 use App\Models\Location;
 use Exception;
 use Alert;
 
-class LocationController extends Controller
-{
+class LocationService {
 
     public function error($kalimat){
         Alert::error('Maaf', $kalimat);
@@ -43,7 +42,8 @@ class LocationController extends Controller
         try {
             Location::create($request->all());
 
-            return $this->index();
+            Alert::success('Mantap', 'Data berhasil ditambah');
+            return redirect()->back();
         }catch (Exception $e){
             return $this->error('Terjadi Kesalahan');
         }
@@ -52,11 +52,15 @@ class LocationController extends Controller
     public function update(LocationRequest $request, $id)
     {
         try {
-            $location = Location::where('id', $id)->first();
-            $location->update($request->all());
+            DB::beginTransaction();
+                $location = Location::where('id', $id)->first();
+                $location->update($request->all());
+            DB::commit();
 
-            return $this->show($id);
+            Alert::success('Mantap', 'Data berhasil diedit');
+            return redirect()->back();
         }catch (Exception $e){
+            DB::rollback();
             return $this->error('Terjadi Kesalahan');
         }
     }
@@ -64,11 +68,15 @@ class LocationController extends Controller
     public function destroy($id)
     {
         try{
-            $location = Location::where('id', $id)->first();
-            $location->delete();
+            DB::beginTransaction();
+                $location = Location::where('id', $id)->first();
+                $location->delete();
+            DB::commit();
 
-            return $this->index();
+            Alert::success('Mantap', 'Data berhasil dihapus');
+            return redirect()->back();
         }catch (Exception $e){
+            DB::rollback();
             return $this->error('Terjadi Kesalahan');
         }
     }

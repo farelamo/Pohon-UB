@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Service\Admin;
+namespace App\Services\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\ClusterRequest;
+use Illuminate\Support\Facades\DB;
 use App\Models\Location;
 use App\Models\TreeType;
 use App\Models\Cluster;
 use Exception;
 use Alert;
 
-class ClusterController extends Controller
+class ClusterService
 {
 
     public function error($kalimat){
@@ -25,7 +25,7 @@ class ClusterController extends Controller
             $tree_types = TreeType::get(['id', 'name'])->toArray();
             $clusters   = Cluster::all();
             
-            return view('', compact('clusters'));
+            return view('', compact('clusters', 'locations', 'tree_types'));
         }catch (Exception $e){
             return $this->error('Terjadi Kesalahan');
         }
@@ -47,7 +47,8 @@ class ClusterController extends Controller
         try {
             Cluster::create($request->all());
 
-            return $this->index();
+            Alert::success('Mantap', 'Data berhasil ditambah');
+            return redirect()->back();
         }catch (Exception $e){
             return $this->error('Terjadi Kesalahan');
         }
@@ -56,11 +57,15 @@ class ClusterController extends Controller
     public function update(ClusterRequest $request, $id)
     {
         try {
-            $cluster = Cluster::where('id', $id)->first();
-            $cluster->update($request->all());
+            DB::beginTransaction();
+                $cluster = Cluster::where('id', $id)->first();
+                $cluster->update($request->all());
+            DB::commit();
 
-            return $this->show($id);
+            Alert::success('Mantap', 'Data berhasil diedit');
+            return redirect()->back();
         }catch (Exception $e){
+            DB::rollback();
             return $this->error('Terjadi Kesalahan');
         }
     }
@@ -68,11 +73,15 @@ class ClusterController extends Controller
     public function destroy($id)
     {
         try{
-            $cluster = Cluster::where('id', $id)->first();
-            $cluster->delete();
+            DB::beginTransaction();
+                $cluster = Cluster::where('id', $id)->first();
+                $cluster->delete();
+            DB::commit();
 
-            return $this->index();
+            Alert::success('Mantap', 'Data berhasil dihapus');
+            return redirect()->back();
         }catch (Exception $e){
+            DB::rollback();
             return $this->error('Terjadi Kesalahan');
         }
     }

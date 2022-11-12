@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('tree_details', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('cluster_id');
+            $table->foreignId('cluster_id')->constrained();
             $table->integer('tall')->unsigned();
             $table->timestamps();
         });

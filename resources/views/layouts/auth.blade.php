@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     @include('partials.head')
-  </head>
-  <body>
+</head>
+
+<body>
+    @include('sweetalert::alert')
     @yield('content')
     @include('partials.script')
     @yield('script')
-  </body>
+</body>
+
 </html>

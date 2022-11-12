@@ -20,13 +20,6 @@
   <section class="section">
     <div class="card">
       <div class="card-body">
-        @php
-         $types = [
-           ["id"=>1,"name"=>"Sawit"],
-           ["id"=>2,"name"=>"Mahoni"],
-           ["id"=>3,"name"=>"Mangga"]
-         ];   
-        @endphp
         <table class="table table-striped table-bordered" id="myTable">
           <thead>
             <tr>
@@ -36,13 +29,13 @@
             </tr>
           </thead>
           <tbody>
-            @foreach ($types as $type)
+            @foreach ($tree_types as $type)
             <tr>
-              <td style="width: 50px">{{ $loop->index+1 }}</td>
-              <td id="n{{ $type['id'] }}">{{ $type['name'] }}</td>
+              <td style="width: 50px">{{ $loop->iteration }}</td>
+              <td id="n{{ $type->id }}">{{ $type->name }}</td>
               <td>
-                <a href="#" class="btn btn-sm btn-success me-2" onclick="edit({{ $type['id'] }})" data-bs-toggle="modal" data-bs-target="#edit"><i class="bi bi-pencil"></i></a>
-                <a href="#" class="btn btn-sm btn-danger" onclick="hapus({{ $type['id'] }})" data-bs-toggle="modal" data-bs-target="#hapus"><i class="bi bi-x"></i></a>
+                <a href="#" class="btn btn-sm btn-success me-2" onclick="edit({{ $type->id }})" data-bs-toggle="modal" data-bs-target="#edit"><i class="bi bi-pencil"></i></a>
+                <a href="#" class="btn btn-sm btn-danger" onclick="hapus({{ $type->id }})" data-bs-toggle="modal" data-bs-target="#hapus"><i class="bi bi-x"></i></a>
               </td>
             </tr>
             @endforeach
@@ -63,11 +56,11 @@
         </button>
       </div>
       <div class="modal-body">
-        <form class="forms-sample" method="post">
+        <form class="forms-sample" method="post" action="{{ route('type.store') }}">
           @csrf
           <div class="form-group row">
             <div class="col-12">
-              <label for="username">Nama</label>
+              <label>Nama</label>
               <input type="text" class="form-control" name="name" required>
             </div>
           </div>
@@ -91,12 +84,13 @@
         </button>
       </div>
       <div class="modal-body">
-        <form class="forms-sample" method="post">
+        <form class="forms-sample" method="post" id="editType">
           @csrf
-          <input type="hidden" id="ei" name="id">
+          @method('PUT')
+
           <div class="form-group row">
             <div class="col-12">
-              <label for="en">Tinggi</label>
+              <label for="en">Nama</label>
               <input type="text" class="form-control" id="en" name="name" required>
             </div>
           </div>
@@ -120,9 +114,10 @@
         </button>
       </div>
       <div class="modal-body">
-        <form class="forms-sample" method="post">
+        <form class="forms-sample" method="post" id="hapusType">
           @csrf
-          <input type="hidden" id="hi" name="id">
+          @method('DELETE')
+
           <p id="hd">Apakah anda yakin ingin menghapus type pohon ini?</p>
           <div class="modal-footer px-0 py-2">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -138,12 +133,13 @@
 @section('script')
   <script>
     function edit(id){
-      $("#ei").val(id);
+      $('#editType').attr('action', `/admin/type/${id}`);
+      console.log(document.getElementById('editType').action)
       $("#en").val($("#n"+id).text());
       $("#et").text("Edit "+$("#n"+id).text());
     }
     function hapus(id){
-      $("#hi").val(id);
+      $('#hapusType').attr('action', `/admin/type/${id}`);
       $("#ht").text("Hapus "+$("#n"+id).text());
       $("#hd").text("Apakah anda yakin ingin menghapus "+$("#n"+id).text()+"?");
     }

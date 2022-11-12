@@ -9,7 +9,7 @@ class Cluster extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['location_id', 'tree_type_id', 'polygon_data', 'donatures',];
+    protected $fillable = ['location_id', 'tree_type_id', 'polygon_data', 'donatures'];
 
     public function tree_details()
     {

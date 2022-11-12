@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Service\Admin;
+namespace App\Services\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\TreeTypeRequest;
+use Illuminate\Support\Facades\DB;
 use App\Models\TreeType;
 use Exception;
 use Alert;
 
-class TreeTypeController extends Controller
+class TreeTypeService
 {
 
     public function error($kalimat){
@@ -21,7 +21,7 @@ class TreeTypeController extends Controller
         try {
             $tree_types = TreeType::all();
             
-            return view('', compact('tree_types'));
+            return view('admin.type', compact('tree_types'));
         }catch (Exception $e){
             return $this->error('Terjadi Kesalahan');
         }
@@ -43,7 +43,8 @@ class TreeTypeController extends Controller
         try {
             TreeType::create($request->all());
 
-            return $this->index();
+            Alert::success('Mantap', 'Data berhasil ditambah');
+            return redirect()->back();
         }catch (Exception $e){
             return $this->error('Terjadi Kesalahan');
         }
@@ -52,11 +53,15 @@ class TreeTypeController extends Controller
     public function update(TreeTypeRequest $request, $id)
     {
         try {
-            $tree_type = TreeType::where('id', $id)->first();
-            $tree_type->update($request->all());
+            DB::beginTransaction();
+                $tree_type = TreeType::where('id', $id)->first();
+                $tree_type->update($request->all());
+            DB::commit();
 
-            return $this->show($id);
+            Alert::success('Mantap', 'Data berhasil diedit');
+            return redirect()->back();
         }catch (Exception $e){
+            DB::rollback();
             return $this->error('Terjadi Kesalahan');
         }
     }
@@ -64,11 +69,15 @@ class TreeTypeController extends Controller
     public function destroy($id)
     {
         try{
-            $tree_type = TreeType::where('id', $id)->first();
-            $tree_type->delete();
+            DB::beginTransaction();
+                $tree_type = TreeType::where('id', $id)->first();
+                $tree_type->delete();
+            DB::commit();
 
-            return $this->index();
+            Alert::success('Mantap', 'Data berhasil dihapus');
+            return redirect()->back();
         }catch (Exception $e){
+            DB::rollback();
             return $this->error('Terjadi Kesalahan');
         }
     }

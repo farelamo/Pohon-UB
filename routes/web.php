@@ -1,32 +1,23 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminAuth;
-use App\Http\Controllers\AdminDashboard;
-use App\Http\Controllers\AdminTree;
-use App\Http\Controllers\AdminType;
-use Illuminate\Support\Facades\Auth;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-Route::get('/', function () {
-    return redirect('/dev/login');
-});
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\TreeTypeController;
+use App\Http\Controllers\Admin\TreeDetailController;
+use App\Http\Controllers\Admin\LocationController;
+use App\Http\Controllers\Admin\ClusterController;
 
 // Auth
-Route::get('/dev/login', [AdminAuth::class, 'index']);
-Route::post('/dev/login', [AdminAuth::class, 'login']);
+Route::get('/', [AuthController::class, 'index']);
+Route::post('/', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout']);
 
-// Admin Page
-Route::get('/dev', [AdminDashboard::class, 'index']);
-Route::get('/dev/tree', [AdminTree::class, 'index']);
-Route::get('/dev/type', [AdminType::class, 'index']);
+Route::prefix('/admin')->group(function () {
+    // Admin Page
+    Route::resource('/', DashboardController::class);
+    Route::resource('/type', TreeTypeController::class);
+    Route::resource('/tree', TreeDetailController::class);
+    Route::resource('/location', LocationController::class);
+    Route::resource('/cluster', ClusterController::class);
+});

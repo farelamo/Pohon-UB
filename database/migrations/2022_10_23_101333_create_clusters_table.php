@@ -12,6 +12,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('tree_type_id')->constrained();
             $table->foreignId('location_id')->constrained();
+            $table->string('name', 100);
             $table->text('donatures');
             $table->json('polygon_data');
             $table->double('avg_tall', 3,2)->nullable();
