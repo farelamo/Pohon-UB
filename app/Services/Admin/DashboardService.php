@@ -1,11 +1,11 @@
 <?php
-    namespace App\Services\Admin;
+namespace App\Services\Admin;
 
-    class DashboardService {
+class DashboardService
+{
 
-        public function index()
-        {
-           return view('admin.dashboard');
-        }
+    public function index()
+    {
+        return view('admin.dashboard');
     }
-?>
+}
