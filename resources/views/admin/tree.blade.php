@@ -35,7 +35,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($tree_details as $tree)
+                            @forelse($tree_details as $tree)
                                 <tr>
                                     <td style="width: 50px">{{ $loop->index + 1 }}</td>
                                     <td class="d-none" id="c{{ $tree->id }}">{{ $tree->cluster_id }}</td>
@@ -49,7 +49,15 @@
                                             data-bs-toggle="modal" data-bs-target="#hapus"><i class="bi bi-x"></i></a>
                                     </td>
                                 </tr>
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td>No Data</td>
+                                    <td>No Data</td>
+                                    <td>No Data</td>
+                                    <td>No Data</td>
+                                    <td>No Data</td>
+                                </tr>
+                            @endforelse 
                         </tbody>
                     </table>
                 </div>

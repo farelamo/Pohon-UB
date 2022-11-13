@@ -29,16 +29,22 @@
             </tr>
           </thead>
           <tbody>
-            @foreach ($tree_types as $type)
-            <tr>
-              <td style="width: 50px">{{ $loop->iteration }}</td>
-              <td id="n{{ $type->id }}">{{ $type->name }}</td>
-              <td>
-                <a href="#" class="btn btn-sm btn-success me-2" onclick="edit({{ $type->id }})" data-bs-toggle="modal" data-bs-target="#edit"><i class="bi bi-pencil"></i></a>
-                <a href="#" class="btn btn-sm btn-danger" onclick="hapus({{ $type->id }})" data-bs-toggle="modal" data-bs-target="#hapus"><i class="bi bi-x"></i></a>
-              </td>
-            </tr>
-            @endforeach
+            @forelse($tree_types as $type)
+              <tr>
+                <td style="width: 50px">{{ $loop->iteration }}</td>
+                <td id="n{{ $type->id }}">{{ $type->name }}</td>
+                <td>
+                  <a href="#" class="btn btn-sm btn-success me-2" onclick="edit({{ $type->id }})" data-bs-toggle="modal" data-bs-target="#edit"><i class="bi bi-pencil"></i></a>
+                  <a href="#" class="btn btn-sm btn-danger" onclick="hapus({{ $type->id }})" data-bs-toggle="modal" data-bs-target="#hapus"><i class="bi bi-x"></i></a>
+                </td>
+              </tr>
+            @empty
+                <tr>
+                  <td>No Data</td>
+                  <td>No Data</td>
+                  <td>No Data</td>
+                </tr>
+            @endforelse 
           </tbody>
         </table>
       </div>

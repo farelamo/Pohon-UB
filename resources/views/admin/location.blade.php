@@ -29,16 +29,22 @@
             </tr>
           </thead>
           <tbody>
-            @foreach ($locations as $location)
-            <tr>
-              <td style="width: 50px">{{ $loop->iteration }}</td>
-              <td id="n{{ $location->id }}">{{ $location->name }}</td>
-              <td>
-                <a href="#" class="btn btn-sm btn-success me-2" onclick="edit({{ $location->id }})" data-bs-toggle="modal" data-bs-target="#edit"><i class="bi bi-pencil"></i></a>
-                <a href="#" class="btn btn-sm btn-danger" onclick="hapus({{ $location->id }})" data-bs-toggle="modal" data-bs-target="#hapus"><i class="bi bi-x"></i></a>
-              </td>
-            </tr>
-            @endforeach
+            @forelse ($locations as $location)
+              <tr>
+                <td style="width: 50px">{{ $loop->iteration }}</td>
+                <td id="n{{ $location->id }}">{{ $location->name }}</td>
+                <td>
+                  <a href="#" class="btn btn-sm btn-success me-2" onclick="edit({{ $location->id }})" data-bs-toggle="modal" data-bs-target="#edit"><i class="bi bi-pencil"></i></a>
+                  <a href="#" class="btn btn-sm btn-danger" onclick="hapus({{ $location->id }})" data-bs-toggle="modal" data-bs-target="#hapus"><i class="bi bi-x"></i></a>
+                </td>
+              </tr>
+            @empty
+              <tr>
+                <td>No Data</td>
+                <td>No Data</td>
+                <td>No Data</td>
+              </tr>
+            @endforelse
           </tbody>
         </table>
       </div>
