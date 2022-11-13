@@ -27,17 +27,6 @@ class TreeTypeService
         }
     }
 
-    public function show($id)
-    {
-        try {
-            $tree_type = TreeType::where('id', $id)->first();
-
-            return view('', compact('tree_type'));
-        } catch (Exception $e){
-            return $this->error('Terjadi Kesalahan');
-        }
-    }
-
     public function store(TreeTypeRequest $request)
     {
         try {

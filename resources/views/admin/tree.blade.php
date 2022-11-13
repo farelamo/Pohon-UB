@@ -67,7 +67,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="forms-sample" method="post">
+                    <form class="forms-sample" method="post" action="{{ route('tree.store') }}">
                         @csrf
                         <div class="form-group row">
                             <div class="col-7">

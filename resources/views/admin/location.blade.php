@@ -5,7 +5,7 @@
   <div class="page-title">
     <div class="row">
       <div class="col-12 col-md-6 order-md-1 order-last">
-        <h3>Tipe Pohon</h3>
+        <h3>Lokasi</h3>
         <p class="text-subtitle text-muted">A sortable, searchable, paginated table without dependencies thanks to simple-datatables</p>
       </div>
       <div class="col-12 col-md-6 order-md-2 order-first d-flex justify-content-end ">
@@ -29,13 +29,13 @@
             </tr>
           </thead>
           <tbody>
-            @foreach ($tree_types as $type)
+            @foreach ($locations as $location)
             <tr>
               <td style="width: 50px">{{ $loop->iteration }}</td>
-              <td id="n{{ $type->id }}">{{ $type->name }}</td>
+              <td id="n{{ $location->id }}">{{ $location->name }}</td>
               <td>
-                <a href="#" class="btn btn-sm btn-success me-2" onclick="edit({{ $type->id }})" data-bs-toggle="modal" data-bs-target="#edit"><i class="bi bi-pencil"></i></a>
-                <a href="#" class="btn btn-sm btn-danger" onclick="hapus({{ $type->id }})" data-bs-toggle="modal" data-bs-target="#hapus"><i class="bi bi-x"></i></a>
+                <a href="#" class="btn btn-sm btn-success me-2" onclick="edit({{ $location->id }})" data-bs-toggle="modal" data-bs-target="#edit"><i class="bi bi-pencil"></i></a>
+                <a href="#" class="btn btn-sm btn-danger" onclick="hapus({{ $location->id }})" data-bs-toggle="modal" data-bs-target="#hapus"><i class="bi bi-x"></i></a>
               </td>
             </tr>
             @endforeach
@@ -50,13 +50,13 @@
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Tambah Tipe Pohon</h5>
+        <h5 class="modal-title">Tambah Lokasi</h5>
         <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
           <i data-feather="x"></i>
         </button>
       </div>
       <div class="modal-body">
-        <form class="forms-sample" method="post" action="{{ route('type.store') }}">
+        <form class="forms-sample" method="post" action="{{ route('location.store') }}">
           @csrf
           <div class="form-group row">
             <div class="col-12">
@@ -78,13 +78,13 @@
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="et" >Edit Tipe Pohon</h5>
+        <h5 class="modal-title" id="et" >Edit Lokasi</h5>
         <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
           <i data-feather="x"></i>
         </button>
       </div>
       <div class="modal-body">
-        <form class="forms-sample" method="post" id="editType">
+        <form class="forms-sample" method="post" id="editLokasi">
           @csrf
           @method('PUT')
 
@@ -108,17 +108,17 @@
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="ht">Hapus Tipe Pohon</h5>
+        <h5 class="modal-title" id="ht">Hapus Lokasi</h5>
         <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
           <i data-feather="x"></i>
         </button>
       </div>
       <div class="modal-body">
-        <form class="forms-sample" method="post" id="hapusType">
+        <form class="forms-sample" method="post" id="hapusLokasi">
           @csrf
           @method('DELETE')
 
-          <p id="hd">Apakah anda yakin ingin menghapus type pohon ini?</p>
+          <p id="hd">Apakah anda yakin ingin menghapus lokasi ini?</p>
           <div class="modal-footer px-0 py-2">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
             <button type="submit" class="btn btn-danger" name="submit" value="delete"><i class="bi bi-x"></i><span> Delete</span></button>
@@ -133,12 +133,12 @@
 @section('script')
   <script>
     function edit(id){
-      $('#editType').attr('action', `/admin/type/${id}`);
+      $('#editLokasi').attr('action', `/admin/location/${id}`);
       $("#en").val($("#n"+id).text());
       $("#et").text("Edit "+$("#n"+id).text());
     }
     function hapus(id){
-      $('#hapusType').attr('action', `/admin/type/${id}`);
+      $('#hapusLokasi').attr('action', `/admin/location/${id}`);
       $("#ht").text("Hapus "+$("#n"+id).text());
       $("#hd").text("Apakah anda yakin ingin menghapus "+$("#n"+id).text()+"?");
     }

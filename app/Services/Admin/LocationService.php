@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Location;
 use Exception;
 use Alert;
+use Log;
 
 class LocationService {
 
@@ -20,19 +21,8 @@ class LocationService {
         try {
             $locations = Location::all();
 
-            return view('', compact('locations'));
+            return view('admin.location', compact('locations'));
         }catch (Exception $e){
-            return $this->error('Terjadi Kesalahan');
-        }
-    }
-
-    public function show($id)
-    {
-        try {
-            $location = Location::where('id', $id)->first();
-
-            return view('', compact('location'));
-        } catch (Exception $e){
             return $this->error('Terjadi Kesalahan');
         }
     }
