@@ -1,14 +1,20 @@
 [
     {
         "id": 1,
-        "name": "sawit"
+        "name": "sawit",
+        "icon": "https://raw.githubusercontent.com/farelamo/Pohon-UB/sample-data/icons/sawit-icon.png",
+        "icon_2x": "https://raw.githubusercontent.com/farelamo/Pohon-UB/sample-data/icons/sawit-icon-2x.png"
     },
     {
         "id": 2,
-        "name": "mahoni"
+        "name": "mahoni",
+        "icon": "https://raw.githubusercontent.com/farelamo/Pohon-UB/sample-data/icons/mahoni-icon.png",
+        "icon_2x": "https://raw.githubusercontent.com/farelamo/Pohon-UB/sample-data/icons/mahoni-icon-2x.png"
     },
     {
         "id": 3,
-        "name": "mangga"
+        "name": "mangga",
+        "icon": "https://raw.githubusercontent.com/farelamo/Pohon-UB/sample-data/icons/mangga-icon.png",
+        "icon_2x": "https://raw.githubusercontent.com/farelamo/Pohon-UB/sample-data/icons/mangga-icon-2x.png"
     }
 ]

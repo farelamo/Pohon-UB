@@ -1,10 +1,10 @@
 [
     {
         "id": 1,
-        "tree_type": "sawit",
+        "tree_type": "mahoni",
         "location": "klojen",
         "avg_tall": "5 meters",
-        "donatures": "john doe|jane doe|fulan",
+        "donatures": "John Doe & Jane Doe Co.",
         "polygon_data": [
             [
                 -7.974245885649665,
@@ -39,14 +39,15 @@
                 112.63116744997683
             ]
         ],
-        "tree_count": 100
+        "tree_count": 100,
+        "image": "https://raw.githubusercontent.com/farelamo/Pohon-UB/sample-data/images/1669437088102.jpg"
     },
     {
         "id": 2,
         "tree_type": "sawit",
         "location": "lowokwaru",
-        "avg_tall": "5 meters",
-        "donatures": "john doe|jane doe|fulan",
+        "avg_tall": "25 meters",
+        "donatures": "Shelby Company Ltd.",
         "polygon_data": [
             [
                 -7.944276162487735,
@@ -65,6 +66,7 @@
                 112.60378581189315
             ]
         ],
-        "tree_count": 100
+        "tree_count": 1000,
+        "image": "https://raw.githubusercontent.com/farelamo/Pohon-UB/sample-data/images/1669437097072.png"
     }
 ]
