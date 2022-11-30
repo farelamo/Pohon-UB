@@ -3,18 +3,13 @@
 namespace App\Services\Api;
 
 use App\Models\Cluster;
+use App\Http\Resources\Api\Cluster\ClusterCollection;
 
-class ClusterService extends Controller
+class ClusterService
 {
     public function index()
     {
         $clusters = Cluster::all();
-        return 'index';
-    }
-
-    public function show($id)
-    {
-        $cluster = Cluster::where('id', $id)->first();
-        return 'show';
+        return new ClusterCollection($clusters);
     }
 }

@@ -3,18 +3,13 @@
 namespace App\Services\Api;
 
 use App\Models\Location;
+use App\Http\Resources\Api\Location\LocationCollection;
 
-class LocationService extends Controller
+class LocationService
 {
     public function index()
     {
-        $locations = Location::all();
-        return 'index';
-    }
-
-    public function show($id)
-    {
-        $location = Location::where('id', $id)->first();
-        return 'show';
+        $locations = Location::select('id','name')->get();
+        return new LocationCollection($locations);
     }
 }

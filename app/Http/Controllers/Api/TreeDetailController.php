@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Services\Api\TreeDetailService;
@@ -15,10 +15,5 @@ class TreeDetailController extends Controller
     public function index()
     {
         return $this->service->index();
-    }
-
-    public function show($id)
-    {
-        return $this->service->show($id);
     }
 }

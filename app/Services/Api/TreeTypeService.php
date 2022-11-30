@@ -3,18 +3,13 @@
 namespace App\Services\Api;
 
 use App\Models\TreeType;
+use App\Http\Resources\Api\TreeType\TreeTypeCollection;
 
-class TreeTypeService extends Controller
+class TreeTypeService
 {
     public function index()
     {
-        $tree_type = TreeType::all();
-        return 'index';
-    }
-
-    public function show($id)
-    {
-        $tree_type = TreeType::where('id', $id)->first();
-        return 'show';
+        $tree_types = TreeType::select('id', 'name')->get();
+        return new TreeTypeCollection($tree_types);
     }
 }
