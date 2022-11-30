@@ -21,11 +21,9 @@ class ClusterService
     public function index()
     {
         try {
-            $locations  = Location::get(['id', 'name'])->toArray();
-            $tree_types = TreeType::get(['id', 'name'])->toArray();
             $clusters   = Cluster::all();
             
-            return view('', compact('clusters', 'locations', 'tree_types'));
+            return view('admin.clusters.index', compact('clusters'));
         }catch (Exception $e){
             return $this->error('Terjadi Kesalahan');
         }
@@ -38,6 +36,31 @@ class ClusterService
 
             return view('', compact('cluster'));
         } catch (Exception $e){
+            return $this->error('Terjadi Kesalahan');
+        }
+    }
+
+    public function create()
+    {
+        try {
+            $locations  = Location::get(['id', 'name'])->toArray();
+            $tree_types = TreeType::get(['id', 'name'])->toArray();
+            
+            return view('admin.clusters.create', compact('locations', 'tree_types'));
+        }catch (Exception $e){
+            return $this->error('Terjadi Kesalahan');
+        }
+    }
+
+    public function edit($id)
+    {
+        try{
+            $cluster    = CLuster::where('id', $id)->get();
+            $locations  = Location::get(['id', 'name'])->toArray();
+            $tree_types = TreeType::get(['id', 'name'])->toArray();
+            
+            return view('admin.clusters.edit', compact('cluster', 'locations', 'tree_types'));
+        }catch (Exception $e){
             return $this->error('Terjadi Kesalahan');
         }
     }

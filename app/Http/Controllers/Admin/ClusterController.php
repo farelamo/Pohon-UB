@@ -23,6 +23,16 @@ class ClusterController extends Controller
         return $this->service->show($id);
     }
 
+    public function create()
+    {
+        return $this->service->create();
+    }
+
+    public function edit($id)
+    {
+        return $this->service->edit($id);
+    }
+
     public function store(ClusterRequest $request)
     {
         return $this->service->store($request);
