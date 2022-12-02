@@ -22,8 +22,10 @@ class ClusterService
     {
         try {
             $clusters   = Cluster::all();
+            $tree_types   = TreeType::all();
+            $locations   = Location::all();
             
-            return view('admin.clusters.index', compact('clusters'));
+            return view('admin.clusters.index', compact('clusters','tree_types','locations'));
         }catch (Exception $e){
             return $this->error('Terjadi Kesalahan');
         }
