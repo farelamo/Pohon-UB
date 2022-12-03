@@ -21,8 +21,8 @@ class ClusterService
     public function index()
     {
         try {
-            $clusters   = Cluster::all();
-            $tree_types   = TreeType::all();
+            $clusters    = Cluster::all();
+            $tree_types  = TreeType::all();
             $locations   = Location::all();
             
             return view('admin.clusters.index', compact('clusters','tree_types','locations'));
@@ -70,10 +70,16 @@ class ClusterService
     public function store(ClusterRequest $request)
     {
         try {
-            Cluster::create($request->all());
+            Cluster::create([
+                'name'          => $request->name,
+                'donatures'     => $request->donatures,
+                'tree_type_id'  => $request->tree_type_id,
+                'location_id'   => $request->location_id,
+                'polygon_data'  => $request->polygon_data,
+            ]);
 
             Alert::success('Mantap', 'Data berhasil ditambah');
-            return redirect()->back();
+            return $this->index();
         }catch (Exception $e){
             return $this->error('Terjadi Kesalahan');
         }
