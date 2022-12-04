@@ -10,6 +10,6 @@ class TreeDetailSeeder extends Seeder
 {
     public function run()
     {
-        return TreeDetail::factory()->count(5)->create();
+        return TreeDetail::factory()->count(100)->create();
     }
 }

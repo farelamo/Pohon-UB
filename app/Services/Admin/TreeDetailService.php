@@ -6,6 +6,7 @@ use App\Http\Requests\TreeDetailRequest;
 use Illuminate\Support\Facades\DB;
 use App\Models\TreeDetail;
 use App\Models\Cluster;
+use Carbon\Carbon;
 use Exception;
 use Alert;
 
@@ -20,8 +21,8 @@ class TreeDetailService
     public function index()
     {
         try {
-            $tree_details = TreeDetail::all();
-            $clusters     = Cluster::all();
+            $tree_details = TreeDetail::orderBy('id', 'desc')->get();
+            $clusters     = Cluster::orderBy('id', 'desc')->get();
 
             return view('admin.tree', compact('tree_details', 'clusters'));
         }catch (Exception $e){
@@ -32,7 +33,11 @@ class TreeDetailService
     public function store(TreeDetailRequest $request)
     {
         try {
-            TreeDetail::create($request->all());
+            TreeDetail::create([
+                'cluster_id' => $request->cluster_id,
+                'tall'       => $request->tall,
+                'year'       => Carbon::now()->format('Y')
+            ]);
 
             Alert::success('Mantap', 'Data berhasil ditambah');
             return redirect()->back();

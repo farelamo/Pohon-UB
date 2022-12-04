@@ -9,7 +9,7 @@ class TreeDetail extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['tall', 'cluster_id'];
+    protected $fillable = ['tall', 'cluster_id', 'year'];
     protected $hidden   = ['created_at', 'updated_at'];
 
     public function cluster()

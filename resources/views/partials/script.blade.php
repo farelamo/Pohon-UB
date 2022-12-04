@@ -9,10 +9,10 @@
     $(document).ready(function() {
         $('#myTable').DataTable({
             "aLengthMenu": [
-                [10, 25, 50, -1],
-                [10, 25, 50, "All Pages"]
+                [5, 10, 20, -1],
+                [5, 10, 20, "All Pages"]
             ],
-            "pageLength": 10
+            "pageLength": 5
         });
     });
 </script>

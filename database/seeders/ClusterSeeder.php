@@ -14,7 +14,6 @@ class ClusterSeeder extends Seeder
                 'name'          => 'Cluster Brawijaya',
                 "tree_type_id"  => 2,
                 "location_id"   => 2,
-                "avg_tall"      => 5,
                 "donatures"     => "john doe|jane doe|fulan",
                 "polygon_data"  => json_encode([
                     [
@@ -50,13 +49,11 @@ class ClusterSeeder extends Seeder
                         112.63116744997683,
                     ],
                 ]),
-                "tree_count" => 100,
             ],
             [
                 'name'          => 'Cluster Bimasakti',
                 "tree_type_id"  => 1,
                 "location_id"   => 1,
-                "avg_tall"      => 5,
                 "donatures"     => "john doe|jane doe|fulan",
                 "polygon_data"  => json_encode([
                     [
@@ -76,7 +73,6 @@ class ClusterSeeder extends Seeder
                         112.60378581189315,
                     ],
                 ]),
-                "tree_count" => 100,
             ],
         ]);
     }
