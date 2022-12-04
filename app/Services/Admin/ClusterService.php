@@ -34,17 +34,6 @@ class ClusterService
         }
     }
 
-    public function show($id)
-    {
-        try {
-            $cluster = Cluster::where('id', $id)->first();
-
-            return view('', compact('cluster'));
-        } catch (Exception $e){
-            return $this->error('Terjadi Kesalahan');
-        }
-    }
-
     public function create()
     {
         try {

@@ -18,11 +18,6 @@ class TreeDetailController extends Controller
         return $this->service->index();
     }
 
-    public function show($id)
-    {
-        return $this->service->show($id);
-    }
-
     public function store(TreeDetailRequest $request)
     {
         return $this->service->store($request);

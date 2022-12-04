@@ -18,11 +18,6 @@ class LocationController extends Controller
         return $this->service->index();
     }
 
-    public function show($id)
-    {
-        return $this->service->show($id);
-    }
-
     public function store(LocationRequest $request)
     {
         return $this->service->store($request);

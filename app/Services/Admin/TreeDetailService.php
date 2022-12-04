@@ -29,17 +29,6 @@ class TreeDetailService
         }
     }
 
-    public function show($id)
-    {
-        try {
-            $tree_detail = TreeDetail::where('id', $id)->first();
-
-            return view('', compact('tree_detail'));
-        } catch (Exception $e){
-            return $this->error('Terjadi Kesalahan');
-        }
-    }
-
     public function store(TreeDetailRequest $request)
     {
         try {
