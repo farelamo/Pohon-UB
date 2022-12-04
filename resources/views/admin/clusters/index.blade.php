@@ -8,7 +8,11 @@
       width: 60%;
       text-align: center;
     }
-  </style>
+    .error {
+      color: red;
+      font-weight: bold;
+    }
+    </style>
 @endpush
 
 @section('content')
@@ -89,10 +93,15 @@
                   @csrf
                   @method('PUT')
 
-                  <input type="hidden" id="ii" name="id">
                   <div class="form-group">
                     <h6>Upload image : </h6>
                     <input type="file" class="form-control" id="ii" name="image">
+                    @error('image')
+                      <div class="error">*{{ $message }}</div>
+                    @enderror
+                  </div>
+                  <div class="col-12">
+                    <input type="text" class="form-control visually-hidden" id="ID" name="id" required>
                   </div>
                   <div class="modal-footer px-0 py-2">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -132,10 +141,20 @@
 @endsection
 
 @section('script')
+  @if (count($errors) > 0)
+  <script type="text/javascript">
+      $(document).ready(function() {
+          
+          $('#image').modal('show');
+          $("#ID").val(<?php echo json_encode(old('id')) ?>);
+          $('#editImage').attr('action', `/admin/cluster/${$("#ID").val()}/update/image`);
+      });
+  </script>
+  @endif
   <script>
     function updateImage(id) {
-      console.log(id)
       $('#editImage').attr('action', `/admin/cluster/${id}/update/image`)
+      $('#ID').val(id)
     }
 
     function hapus(id){
