@@ -40,7 +40,6 @@
               <th>Nama Cluster</th>
               <th>Tipe Pohon</th>
               <th>Lokasi</th>
-              <th>Tinggi (Rata2)</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -50,18 +49,10 @@
                 <td style="width: 50px">{{ $loop->iteration }}</td>
                 <td id="n{{ $cluster->id }}">
                   <span><img src="{{ Storage::url('public/clusters/' . $cluster->image) }}" alt="" style="width: 25px"></span>
-                  {{ $cluster->name }}
+                  <span id="cn{{ $cluster->id }}">{{ $cluster->name }}</span>
                 </td>
                 <td id="t{{ $cluster->id }}">{{ $cluster->tree_type->name }}</td>
                 <td id="l{{ $cluster->id }}">{{ $cluster->location->name }}</td>
-                <td id="a{{ $cluster->id }}">
-                  @if ($cluster->avg_tall)
-                    {{ $cluster->avg_tall }} m
-                  @else
-                    Belum ada detail pohon
-                  @endif
-                  
-                </td>
                 <td>
                   <a href="/admin/cluster/{{$cluster->id}}/edit" class="btn btn-sm btn-success me-2"><i class="bi bi-pencil"></i></a>
                   <a href="#" class="btn btn-sm btn-success me-2" onclick="updateImage({{ $cluster->id }})" data-bs-toggle="modal" data-bs-target="#image"><i class="bi bi-card-image"></i></a>
@@ -70,7 +61,6 @@
               </tr>
             @empty
                 <tr>
-                  <td>No Data</td>
                   <td>No Data</td>
                   <td>No Data</td>
                   <td>No Data</td>
@@ -150,8 +140,8 @@
 
     function hapus(id){
       $('#hapusType').attr('action', `/admin/cluster/${id}`);
-      $("#ht").text("Hapus "+$("#t"+id).text());
-      $("#hd").text("Apakah anda yakin ingin menghapus cluster "+$("#t"+id).text()+"?");
+      $("#ht").text("Hapus "+$("#cn"+id).text());
+      $("#hd").text("Apakah anda yakin ingin menghapus cluster "+$("#cn"+id).text()+"?");
     }
   </script>
 @endsection
