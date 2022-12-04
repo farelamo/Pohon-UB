@@ -2,8 +2,11 @@
 
 namespace App\Services\Admin;
 
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ClusterRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 use App\Models\Location;
 use App\Models\TreeType;
 use App\Models\Cluster;
@@ -57,7 +60,7 @@ class ClusterService
     public function edit($id)
     {
         try{
-            $cluster    = CLuster::where('id', $id)->get();
+            $cluster    = CLuster::where('id', $id)->first();
             $locations  = Location::get(['id', 'name'])->toArray();
             $tree_types = TreeType::get(['id', 'name'])->toArray();
             
@@ -70,13 +73,7 @@ class ClusterService
     public function store(ClusterRequest $request)
     {
         try {
-            Cluster::create([
-                'name'          => $request->name,
-                'donatures'     => $request->donatures,
-                'tree_type_id'  => $request->tree_type_id,
-                'location_id'   => $request->location_id,
-                'polygon_data'  => $request->polygon_data,
-            ]);
+            Cluster::create($request->all());
 
             Alert::success('Mantap', 'Data berhasil ditambah');
             return $this->index();
@@ -94,7 +91,7 @@ class ClusterService
             DB::commit();
 
             Alert::success('Mantap', 'Data berhasil diedit');
-            return redirect()->back();
+            return $this->index();
         }catch (Exception $e){
             DB::rollback();
             return $this->error('Terjadi Kesalahan');
@@ -106,12 +103,53 @@ class ClusterService
         try{
             DB::beginTransaction();
                 $cluster = Cluster::where('id', $id)->first();
+                if(Storage::disk('local')->exists('public/clusters/' . $cluster->image)){
+                    Storage::delete('public/clusters/' . $cluster->image);
+                }
                 $cluster->delete();
             DB::commit();
 
             Alert::success('Mantap', 'Data berhasil dihapus');
-            return redirect()->back();
+            return $this->index();
         }catch (Exception $e){
+            DB::rollback();
+            return $this->error('Terjadi Kesalahan');
+        }
+    }
+
+    public function updateImage(Request $request, $id)
+    {
+        $rules = [
+            'image' => 'required|mimes:jpg,jpeg,png|max:5048',
+        ];
+
+        Validator::make($request->all(), $rules, $messages = 
+        [
+            'image.required'    => 'gambar harus diisi',
+            'image.mimes'       => 'format gambar harus berupa JPG, PNG atau JPEG',
+            'image.max'         => 'maximal gambar adalah 5 mb',
+        ])->validate();
+
+        try {
+            DB::beginTransaction();
+
+                $cluster = Cluster::where('id', $id)->first();
+
+                if(Storage::disk('local')->exists('public/clusters/' . $cluster->image)){
+                    Storage::delete('public/clusters/' . $cluster->image);
+                }
+            
+                $imageFile = $request->file('image');
+                $image     = time() . '-' . $imageFile->getClientOriginalName();
+                Storage::putFileAs('public/clusters/', $imageFile, $image);
+
+                $cluster->update(['image' => $image]);
+
+            DB::commit();
+
+            Alert::success('Mantap', 'Gambar berhasil diupdate');
+            return redirect()->back();
+        }catch (Exception $e) {
             DB::rollback();
             return $this->error('Terjadi Kesalahan');
         }

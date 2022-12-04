@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\ClusterRequest;
 use App\Services\Admin\ClusterService;
+use App\Http\Requests\ClusterRequest;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class ClusterController extends Controller
 {
@@ -46,5 +47,10 @@ class ClusterController extends Controller
     public function destroy($id)
     {
         return $this->service->destroy($id);
+    }
+
+    public function updateImage(Request $request, $id)
+    {
+        return $this->service->updateImage($request, $id);
     }
 }

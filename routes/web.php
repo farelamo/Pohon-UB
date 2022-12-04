@@ -20,4 +20,5 @@ Route::prefix('/admin')->group(function () {
     Route::resource('/tree', TreeDetailController::class);
     Route::resource('/location', LocationController::class);
     Route::resource('/cluster', ClusterController::class);
+    Route::put('/cluster/{id}/update/image', [ClusterController::class, 'updateImage']);
 });

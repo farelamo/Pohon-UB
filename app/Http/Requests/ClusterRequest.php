@@ -32,7 +32,7 @@ class ClusterRequest extends FormRequest
             'tree_type_id.required' => 'jenis pohon harus dipilih',
             'tree_type_id.exists'   => 'jenis pohon tidak ditemukan', 
             'donatures.required'    => 'donature harus diisi', 
-            'polygon_data.required' => 'polygon data harus diisi', 
+            'polygon_data.required' => 'penanda lokasi harus diisi', 
         ];
     }
 }
