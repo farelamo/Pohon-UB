@@ -19,7 +19,7 @@ class LocationService {
     public function index()
     {
         try {
-            $locations = Location::all();
+            $locations = Location::orderBy('id', 'desc')->get();
 
             return view('admin.location', compact('locations'));
         }catch (Exception $e){

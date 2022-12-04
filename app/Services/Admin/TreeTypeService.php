@@ -19,7 +19,7 @@ class TreeTypeService
     public function index()
     {
         try {
-            $tree_types = TreeType::all();
+            $tree_types = TreeType::orderBy('id', 'desc')->get();
             
             return view('admin.type', compact('tree_types'));
         }catch (Exception $e){

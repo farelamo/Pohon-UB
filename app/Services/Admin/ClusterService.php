@@ -24,9 +24,9 @@ class ClusterService
     public function index()
     {
         try {
-            $clusters    = Cluster::all();
-            $tree_types  = TreeType::all();
-            $locations   = Location::all();
+            $clusters    = Cluster::orderBy('id', 'desc')->get();
+            $tree_types  = TreeType::orderBy('id', 'desc')->get();
+            $locations   = Location::orderBy('id', 'desc')->get();
             
             return view('admin.clusters.index', compact('clusters','tree_types','locations'));
         }catch (Exception $e){
