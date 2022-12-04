@@ -9,7 +9,7 @@ class ClusterService
 {
     public function index()
     {
-        $clusters = Cluster::all();
+        $clusters = Cluster::whereNotNull('image')->get();
         return new ClusterCollection($clusters);
     }
 }

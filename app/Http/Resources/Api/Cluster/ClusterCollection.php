@@ -4,6 +4,7 @@ namespace App\Http\Resources\Api\Cluster;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use App\Http\Resources\Api\TreeType\TreeTypeResource;
+use Illuminate\Support\Facades\Storage;
 
 class ClusterCollection extends ResourceCollection
 {
@@ -20,6 +21,7 @@ class ClusterCollection extends ResourceCollection
                     'name'          => $data->name,
                     'polygon_data'  => json_decode($data->polygon_data),
                     'tree_count'    => count($data->tree_details),
+                    'image'         => stripslashes(env('APP_URL') . Storage::url('public/clusters/' . $data->image)),
                 ];
             })
         ];
