@@ -158,7 +158,6 @@
           $('#edit').modal('show');
           $("#en").val(<?php echo json_encode(old('name')) ?>);
           $("#ID").val(<?php echo json_encode(old('id')) ?>);
-          console.log($("#ID").val(), 'VALUEEEE')
           $('#editLokasi').attr('action', `/admin/location/${$("#ID").val()}`);
       });
   </script>
