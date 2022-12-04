@@ -99,12 +99,12 @@
                                     Tandai Lokasi
                                 </button>
                                 @error('polygon_data')
-                                    <div class="error">*{{ $message }}</div>
+                                    <span class="error">*{{ $message }}</span>
                                 @enderror
                                 @if (count($errors) > 0)
                                 @php $bag = $errors->getBag($__errorArgs[1] ?? 'default'); @endphp
                                     @if (!$bag->has('polygon_data'))
-                                        <div class="error">*Silahkan tanda i lokasi lagi</div>
+                                        <span class="error">*Silahkan tanda i lokasi lagi</span>
                                     @endif
                                 @endif
                             </div>
