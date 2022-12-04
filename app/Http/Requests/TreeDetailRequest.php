@@ -22,8 +22,9 @@ class TreeDetailRequest extends FormRequest
     public function messages()
     {
         return [
-            'tall.required'     => 'panjang pohon harus diisi', 
-            'cluster_id.max'    => 'cluster harus dipilih',
+            'tall.required'         => 'panjang pohon harus diisi', 
+            'cluster_id.required'   => 'cluster harus dipilih',
+            'cluster_id.exists'     => 'cluster yang dipilih tidak tersedia',
         ];
     }
 }

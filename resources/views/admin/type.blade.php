@@ -1,5 +1,14 @@
 @extends('layouts.index')
 
+@push('head')
+    <style>
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+@endpush
+
 @section('content')
 <div class="page-heading">
   <div class="page-title">
@@ -97,6 +106,12 @@
             <div class="col-12">
               <label for="en">Nama</label>
               <input type="text" class="form-control" id="en" name="name" required>
+              @error('name')
+                <div class="error">*{{ $message }}</div>
+              @enderror
+            </div>
+            <div class="col-12">
+              <input type="text" class="form-control visually-hidden" id="ID" name="id" required>
             </div>
           </div>
           <div class="modal-footer px-0 py-2">
@@ -136,10 +151,22 @@
 @endsection
 
 @section('script')
+  @if (count($errors) > 0)
+  <script type="text/javascript">
+      $(document).ready(function() {
+          
+          $('#edit').modal('show');
+          $("#en").val(<?php echo json_encode(old('name')) ?>);
+          $("#ID").val(<?php echo json_encode(old('id')) ?>);
+          $('#editType').attr('action', `/admin/type/${$("#ID").val()}`);
+      });
+  </script>
+  @endif
   <script>
     function edit(id){
       $('#editType').attr('action', `/admin/type/${id}`);
       $("#en").val($("#n"+id).text());
+      $("#ID").val(id);
       $("#et").text("Edit "+$("#n"+id).text());
     }
     function hapus(id){

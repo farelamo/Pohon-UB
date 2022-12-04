@@ -20,9 +20,6 @@
         <section class="section">
             <div class="card">
                 <div class="card-body">
-                    @php
-                        $trees = [['id' => 1, 'cluster_id' => 1, 'tall' => 120], ['id' => 2, 'cluster_id' => 2, 'tall' => 330], ['id' => 3, 'cluster_id' => 3, 'tall' => 240], ['id' => 4, 'cluster_id' => 1, 'tall' => 450], ['id' => 5, 'cluster_id' => 2, 'tall' => 360], ['id' => 6, 'cluster_id' => 3, 'tall' => 170], ['id' => 7, 'cluster_id' => 1, 'tall' => 480]];
-                    @endphp
                     <table class="table table-striped table-bordered" id="myTable">
                         <thead>
                             <tr>
@@ -49,7 +46,6 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td>No Data</td>
                                     <td>No Data</td>
                                     <td>No Data</td>
                                     <td>No Data</td>
@@ -129,6 +125,9 @@
                                 <label for="username">Tinggi</label>
                                 <input type="number" class="form-control" id="et" name="tall" required>
                             </div>
+                            <div class="col-12">
+                                <input type="text" class="form-control visually-hidden" id="ID" name="id" required>
+                            </div>
                         </div>
                         <div class="modal-footer px-0 py-2">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -169,6 +168,23 @@
 @endsection
 
 @section('script')
+    @if (count($errors) > 0)
+    <script type="text/javascript">
+        $(document).ready(function() {
+            
+            $('#edit').modal('show');
+            const clusterId = <?php echo json_encode(old('cluster_id')) ?>
+            document.querySelectorAll("#pc").forEach(e => {
+                if(clusterId == e.value){
+                  e.setAttribute('selected', true);
+                }
+            });
+            $("#et").val(<?php echo json_encode(old('tall')) ?>);
+            $("#ID").val(<?php echo json_encode(old('id')) ?>);
+            $('#editDetail').attr('action', `/admin/tree/${$("#ID").val()}`);
+        });
+    </script>
+    @endif
     <script>
         function edit(id) {
             const clusterId = $("#c" + id).text()
@@ -180,6 +196,7 @@
             $('#editDetail').attr('action', `/admin/tree/${id}`);
             $("#ec").val($("#c" + id).text());
             $("#et").val($("#t" + id).text().replace(" cm", ""));
+            $("#ID").val(id);
         }
 
         function hapus(id) {
