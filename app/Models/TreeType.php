@@ -9,7 +9,7 @@ class TreeType extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'ori_icon', 'modif_icon'];
     protected $hidden   = ['created_at', 'updated_at'];
 
     public function locations()
