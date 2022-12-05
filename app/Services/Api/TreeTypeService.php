@@ -9,7 +9,7 @@ class TreeTypeService
 {
     public function index()
     {
-        $tree_types = TreeType::select('id', 'name')->get();
+        $tree_types = TreeType::select('id', 'name', 'ori_icon', 'modif_icon')->get();
         return new TreeTypeCollection($tree_types);
     }
 }
