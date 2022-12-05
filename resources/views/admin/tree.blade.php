@@ -24,7 +24,8 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Cluster ID</th>
+                                <th class="d-none">Cluster ID</th>
+                                <th>Cluster Name</th>
                                 <th>Tinggi</th>
                                 <th>Actions</th>
                             </tr>
