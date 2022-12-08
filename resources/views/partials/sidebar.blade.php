@@ -1,5 +1,5 @@
 <div id="sidebar" class="active">
-    <div class="sidebar-wrapper active">
+    <div class="sidebar-wrapper active" style="z-index: 2000 !important">
         <div class="sidebar-header position-relative">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="logo">
@@ -55,7 +55,7 @@
                 </li>
                 <li class="sidebar-item">
                     <a href="/admin/cluster" class='sidebar-link text-success'>
-                      <i class="bi bi-circle text-success"></i><span>Cluster</span></a>
+                      <i class="bi bi-bounding-box-circles text-success"></i><span>Cluster</span></a>
                 </li>
                 <li class="sidebar-item">
                     <a href="/admin/tree" class='sidebar-link text-success'><i
