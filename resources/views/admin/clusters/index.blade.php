@@ -36,8 +36,8 @@
 <div class="page-content">
   <section class="section">
     <div class="card">
-      <div class="card-body">
-        <table class="table table-striped table-bordered" id="myTable">
+      <div class="card-body table-responsive">
+        <table class="table table-striped table-bordered pe-4 pe-md-0" id="myTable" style="min-width: 800px">
           <thead>
             <tr>
               <th>No</th>

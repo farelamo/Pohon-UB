@@ -10,8 +10,8 @@
                 <div class="card">
                     <div class="card-body py-4 px-4">
                         <div class="d-flex align-items-center">
-                            <div class="avatar avatar-xl">
-                                <img src="/assets/images/faces/1.jpg" alt="Face 1">
+                            <div>
+                                <i class="bi bi-tree-fill text-success fs-1"></i>
                             </div>
                             <div class="ms-3 name">
                                 <h5 class="font-bold">Pohon</h5>
@@ -25,8 +25,8 @@
                 <div class="card">
                     <div class="card-body py-4 px-4">
                         <div class="d-flex align-items-center">
-                            <div class="avatar avatar-xl">
-                                <img src="/assets/images/faces/1.jpg" alt="Face 1">
+                            <div>
+                                <i class="bi bi-tree-fill text-success fs-1"></i>
                             </div>
                             <div class="ms-3 name">
                                 <h5 class="font-bold">Tipe Pohon</h5>
@@ -40,8 +40,8 @@
                 <div class="card">
                     <div class="card-body py-4 px-4">
                         <div class="d-flex align-items-center">
-                            <div class="avatar avatar-xl">
-                                <img src="/assets/images/faces/1.jpg" alt="Face 1">
+                            <div>
+                                <i class="bi bi-pin-map-fill text-success fs-1"></i>
                             </div>
                             <div class="ms-3 name">
                                 <h5 class="font-bold">Lokasi</h5>
@@ -55,8 +55,8 @@
                 <div class="card">
                     <div class="card-body py-4 px-4">
                         <div class="d-flex align-items-center">
-                            <div class="avatar avatar-xl">
-                                <img src="/assets/images/faces/1.jpg" alt="Face 1">
+                            <div>
+                                <i class="bi bi-bounding-box-circles text-success fs-1"></i>
                             </div>
                             <div class="ms-3 name">
                                 <h5 class="font-bold">Cluster</h5>
