@@ -21,7 +21,7 @@ class ClusterCollection extends ResourceCollection
                     'name'          => $data->name,
                     'polygon_data'  => json_decode($data->polygon_data),
                     'tree_count'    => count($data->tree_details),
-                    'avg_tall'      => $data->tree_details->avg('tall'),
+                    'avg_tall'      => round($data->tree_details->avg('tall'), 2),
                     'image'         => stripslashes(env('APP_URL') . Storage::url('public/clusters/' . $data->image)),
                 ];
             })

@@ -106,7 +106,7 @@ class TreeTypeService
                 Storage::putFileAs('public/tree_type/ori_icon', $oriIconFile, $oriIcon);
                 
                 Storage::disk('public')->makeDirectory('tree_type/modif_icon');
-                $modifIcon     = time() . '- 2x-' . $oriIconFile->getClientOriginalName();
+                $modifIcon     = time() . '-2x-' . $oriIconFile->getClientOriginalName();
                 $path          = storage_path() . '/app/public/tree_type/modif_icon/'. $oriIcon;
                 $modifIconFile = Image::make($oriIconFile->getRealPath())
                                         ->fit(40, 40)
